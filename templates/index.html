@@ -7,4 +7,31 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<div class="query-input">test 123</div>
+
+<header>
+	<p>SQL Query Visualizer</p>
+</header>
+<div class="query-input">test 123
+	<textarea id="queryInput" placeholder="Write your query here!"></textarea>
+	<button onclick="sendQuery()">Query</button>
+</div>
+
+
+
+<script>
+
+	async function sendQuery() {
+
+		
+		console.log("hello")
+		const query = document.getElementById("queryInput").value;
+		const test = await fetch("/test",{
+		method: "POST",
+		headers: { "Content_type": "application/json"},
+		body: JSON.stringify({query: query})
+		});
+		const data = await test.json();
+		console.log(data)
+	}	
+
+</script>
