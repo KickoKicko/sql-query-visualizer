@@ -13,18 +13,45 @@ def query():
     #print(request.data.decode("utf-8"))
     query = request.data.decode("utf-8")
     query = query[10:len(query)-2]
-    query =query =  tests(query)
+    query =  tests(query)
     words = query.split()
     table_part = []
+    parser(query)
     for i in range(len(words)):
         if words[i] == "FROM":
             table_part = words[i+1:]
-    print(query)
-    print(words)
-    print(table_part)
+    #print(query)
+    #print(words)
+    #print(table_part)
     query_test = {"rows": ["Row 1"], "query":"SELECT * FROM test;"}
     return jsonify(query_test)
 
+
+def parser(query):
+    list = []
+    current_string = ""
+    index = 0;
+    print("|"+query+"|")
+    while True:
+        if index == len(query):
+            if current_string != "": list.append(current_string)
+            break
+        if query[index] == " ":
+            if current_string != "": 
+                list.append(current_string)
+                current_string = ""
+            index += 1
+            continue
+        elif query[index] == "," or query[index] == "(" or query[index] == ")":
+            if current_string != "":
+                list.append(current_string)
+                current_string = ""
+            list.append(query[index])
+            index+=1
+            continue
+        current_string += query[index]
+        index +=1
+    print(list)
 
 
 def tests(query):
