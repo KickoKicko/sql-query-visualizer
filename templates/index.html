@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SQL Query Visualizer</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+  <style>
+	  #cy {width: 100%; height: 100vh;}
+  </style>
 </head>
 
 
@@ -15,6 +19,17 @@
 	<textarea id="queryInput" placeholder="Write your query here!"></textarea>
 	<button class="query-button" onclick="sendQuery()">Query</button>
 </div>
+
+<div id="cy"></div>
+
+<script>
+	cytoscape({
+		container: document.getElementById('cy'),
+		elements: [{data: { id: 'a', label: 'Node A'}}],
+		style: [{ selector: 'node',style:{'label':'data(label)'}}],
+		layout: {name: 'grid'}
+	});
+</script>
 
 
 
