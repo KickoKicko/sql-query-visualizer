@@ -24,7 +24,8 @@ def query():
     #print(words)
     #print(table_part)
     query_test = {"rows": ["Row 1"], "query":"SELECT * FROM test;"}
-    return jsonify(query_test)
+    query_blueprint={"tables": [{"name":"table_A","attributes":["att_1","att_2","att_3"]},{"name":"table_B","attributes":["att_4","att_5"]}]}
+    return jsonify(query_blueprint)
 
 
 def parser(query):

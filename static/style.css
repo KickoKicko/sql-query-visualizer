@@ -27,3 +27,13 @@ body{
     margin-right:0.3vh;
     align-self:center;
 }
+
+.query-display-div{
+    border: 5px solid black;
+    width: 70vw;
+    height: 50vh;
+    margin-left: calc(15vw - 5px);
+    margin-right: calc(15vw - 5px);
+    margin-top: 3%;
+
+}
